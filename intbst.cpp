@@ -172,18 +172,19 @@ bool IntBST::contains(int value) const {
 
 // returns the Node containing the predecessor of the given value
 IntBST::Node* IntBST::getPredecessorNode(int value) const{
-    Node* curr = getNodeFor(value, root);
-    if (curr->left) {
-        curr = curr->left;
-        while (curr->right) {curr = curr->right;}
-        return curr;
-    }
-    else {
-        while (curr->parent && curr->parent->info > value) {
-            curr = curr->parent;
+    Node* n = root;
+    Node* maxLess = nullptr;
+    while (n != nullptr) {
+        if (n->info < value) {
+            //if (maxLess == nullptr || maxLess->info < n->info) {}
+            maxLess = n;
+            n = n->right;
         }
-        return curr->parent;
+        else {
+            n = n->left;
+        }
     }
+    return maxLess;
 }
 
 // returns the predecessor value of the given value or 0 if there is none
@@ -197,18 +198,19 @@ int IntBST::getPredecessor(int value) const{
 
 // returns the Node containing the successor of the given value
 IntBST::Node* IntBST::getSuccessorNode(int value) const{
-    Node* curr = getNodeFor(value, root);
-    if (curr->right) {
-        curr = curr->right;
-        while (curr->left) {curr = curr->left;}
-        return curr;
-    }
-    else {
-        while (curr->parent && curr->parent->info < value) {
-            curr = curr->parent;
+    Node* n = root;
+    Node* minGreater = nullptr;
+    while (n != nullptr) {
+        if (n->info > value) {
+            //if (minGreater == nullptr || minGreater->info > n->info) {}
+            minGreater = n;
+            n = n->left;
         }
-        return curr->parent;
+        else {
+            n = n->right;
+        }
     }
+    return minGreater;
 }
 
 // returns the successor value of the given value or 0 if there is none
@@ -232,8 +234,7 @@ bool IntBST::remove(int value){
     Node* next = n->right;
     if (next == nullptr) {
         next = n->left;
-    }
-    else {
+    } else {
         Node* curr = next;
         while (curr->left) {
             curr = curr->left;
@@ -250,10 +251,10 @@ bool IntBST::remove(int value){
         else{
             n->parent->right = next;
         }   
-    }
-    else {
+    } else {
         root = next;
     }
+
     if (next) {next->parent = n->parent;}
     delete n;
     n = nullptr;

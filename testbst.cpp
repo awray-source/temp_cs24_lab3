@@ -99,7 +99,15 @@ int main() {
         bst1.printPreOrder();
         cout << endl;
     }
-
+    if (all) {
+        auto arr = {0, 8, 16, 32, 64, 128, 256, 512};
+        for (int x : arr) {
+            cout << "  predecessor of " << x << " is: " <<
+                bst1.getPredecessor(x) << endl;
+            cout << "  successor of " << x << " is: " <<
+                bst1.getSuccessor(x) << endl;
+        }
+    }
     // test methods for empty bst2
     cout << "Empty BST: " << endl << "  pre-order: ";
     bst2.printPreOrder();
