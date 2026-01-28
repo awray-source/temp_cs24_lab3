@@ -242,6 +242,8 @@ bool IntBST::remove(int value){
         curr->left = n->left;
         curr->left->parent = curr;
     }
+    n->right = nullptr;
+    n->left = nullptr;
 
     //links parents to next
     if (n->parent) {
