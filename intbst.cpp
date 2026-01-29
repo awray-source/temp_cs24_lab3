@@ -38,8 +38,7 @@ void IntBST::clear(Node *n) {
 // insert value in tree; return false if duplicate
 bool IntBST::insert(int value) {
     if (root == nullptr) {
-        root = new Node();
-        root->info = value;
+        root = new Node(value);
         return true;
     }
     return insert(value, root);
@@ -231,20 +230,20 @@ bool IntBST::remove(int value){
     if (!n) {
         return false;
     }
+
     //joins left and right children into one tree, next
     Node* next = n->right;
     if (next == nullptr) {
         next = n->left;
-    } else {
-        Node* curr = next;
-        while (curr->left) {
+    } else if (n->left) {
+            Node* curr = next;
+            while (curr->left) {
             curr = curr->left;
-        }
-        if(n->left) {
+            }
             curr->left = n->left;
             curr->left->parent = curr;
-        }
     }
+    
     n->right = nullptr;
     n->left = nullptr;
 
