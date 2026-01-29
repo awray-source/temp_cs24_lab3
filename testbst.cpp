@@ -100,13 +100,28 @@ int main() {
         cout << endl;
     }
     if (all) {
-        auto arr = {0, 8, 16, 32, 64, 128, 256, 512};
+        auto arr = {5, 3, -4, 7, -12, 13, 18, 9, 0 -7, -11};
+        IntBST myBST;
         for (int x : arr) {
-            cout << "  predecessor of " << x << " is: " <<
-                bst1.getPredecessor(x) << endl;
-            cout << "  successor of " << x << " is: " <<
-                bst1.getSuccessor(x) << endl;
+            myBST.insert(x);
         }
+        myBST.printPreOrder();
+        cout << endl;
+
+        myBST.remove(-12);
+        
+
+        for (int x : arr) {
+            if (false) {
+                cout << "  predecessor of " << x << " is: " <<
+                    myBST.getPredecessor(x) << endl;
+                cout << "  successor of " << x << " is: " <<
+                    myBST.getSuccessor(x) << endl;
+            }
+        }
+
+        myBST.printPreOrder();
+        cout << endl;
     }
     // test methods for empty bst2
     cout << "Empty BST: " << endl << "  pre-order: ";

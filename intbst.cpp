@@ -1,6 +1,7 @@
 // intbst.cpp
 // Implements class IntBST
 // Alex Wray, 1/22/2026
+// {5, 3, -4, 7, -12, 13, 18, 9, 0 -7, -11}
 
 #include "intbst.h"
 
@@ -230,7 +231,7 @@ bool IntBST::remove(int value){
     if (!n) {
         return false;
     }
-    //joins left and right into one tree, next
+    //joins left and right children into one tree, next
     Node* next = n->right;
     if (next == nullptr) {
         next = n->left;
@@ -239,8 +240,10 @@ bool IntBST::remove(int value){
         while (curr->left) {
             curr = curr->left;
         }
-        curr->left = n->left;
-        curr->left->parent = curr;
+        if(n->left) {
+            curr->left = n->left;
+            curr->left->parent = curr;
+        }
     }
     n->right = nullptr;
     n->left = nullptr;
@@ -257,8 +260,19 @@ bool IntBST::remove(int value){
         root = next;
     }
 
-    if (next) {next->parent = n->parent;}
+    if (next) {
+        next->parent = n->parent;
+    }
+    n->parent = nullptr;
     delete n;
     n = nullptr;
     return true;
 }
+
+//void testScan(Node *n) {
+//    testScanHelper()
+//}
+
+//IntBST::Node* IntBST::testScanHelper() {
+    
+//}
