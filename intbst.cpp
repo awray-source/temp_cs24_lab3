@@ -232,35 +232,38 @@ bool IntBST::remove(int value){
     }
 
     //joins left and right children into one tree, next
-    Node* next = n->right;
-    if (next == nullptr) {
-        next = n->left;
-    } else if (n->left) {
-            Node* curr = next;
+
+    Node* nextNode = nullptr;
+    if (n->right == nullptr) {
+        nextNode = n->left;
+    } else {
+        nextNode = n->right;
+        if (n->left) {
+            Node* curr = nextNode;
             while (curr->left) {
-            curr = curr->left;
+                curr = curr->left;
             }
             curr->left = n->left;
             curr->left->parent = curr;
-    }
+    } }
     
     n->right = nullptr;
     n->left = nullptr;
 
-    //links parents to next
+    //links parents to nextNode
     if (n->parent) {
         if (n->parent->left == n) {
-            n->parent->left = next;
+            n->parent->left = nextNode;
         }
         else{
-            n->parent->right = next;
+            n->parent->right = nextNode;
         }   
     } else {
-        root = next;
+        root = nextNode;
     }
 
-    if (next) {
-        next->parent = n->parent;
+    if (nextNode) {
+        nextNode->parent = n->parent;
     }
     n->parent = nullptr;
     delete n;
