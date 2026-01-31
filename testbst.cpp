@@ -100,7 +100,7 @@ int main() {
         cout << endl;
     }
     if (all) {
-        auto arr = {5, 3, -4, 7, -12, 13, 18, 9, 0, -7, -11};
+        auto arr = {5, 3, -4, 7, -12, 13, 18, 9, 0, -7, -11, 1004, 593, -6, 25, 14, -1, 48, 2999, 4999, 3999, 80, 81, 83, 1000, 999, 1001, 1004, 1007, 1008};
         //auto arr = {5, 3, -4, 0, -12, -7, -11, 7, 13, 9, 18};
         IntBST myBST;
         for (int x : arr) {
@@ -108,19 +108,31 @@ int main() {
         }
         myBST.printInOrder();
         cout << endl;
+        myBST.testScan();
 
-        myBST.remove(3);
-        myBST.remove(13);
+        auto arr2 = arr;
+        for (int x : arr) {
+            if (x%3 == 0 || x==5){
+                myBST.remove(x);
+            }
+        }
+                for (int x : arr) {
+            if (x%3 != 0 || x==5){
+                myBST.remove(x);
+            }
+        }
         
         myBST.printInOrder();
         cout << endl;
 
-        for (int x : arr) {
-            cout << "  predecessor of " << x << " is: " <<
-                myBST.getPredecessor(x) << endl;
-            cout << "  successor of " << x << " is: " <<
-                myBST.getSuccessor(x) << endl;
-            }
+        myBST.testScan();
+
+        // for (int x : arr) {
+        //     cout << "  predecessor of " << x << " is: " <<
+        //         myBST.getPredecessor(x) << endl;
+        //     cout << "  successor of " << x << " is: " <<
+        //         myBST.getSuccessor(x) << endl;
+        //     }
 
         }
     // test methods for empty bst2

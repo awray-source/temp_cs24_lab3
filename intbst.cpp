@@ -271,10 +271,34 @@ bool IntBST::remove(int value){
     return true;
 }
 
-//void testScan(Node *n) {
-//    testScanHelper()
-//}
+void IntBST::testScan() {
+   testScanHelper(root);
+}
 
-//IntBST::Node* IntBST::testScanHelper() {
-    
-//}
+void IntBST::testScanHelper(Node *n) {
+
+    if (n==nullptr) {return;}
+
+    testScanHelper(n->left);
+
+    cout << "  info is: " << n->info << "\n";
+    if (n->left) {
+        cout << "  left child is: " << n->left->info << "\n"; 
+    } else {
+        cout << "  left child is: " << "nullptr" << "\n"; 
+    }
+    if (n->right) {
+        cout << "  right child is: " << n->right->info << "\n";
+    } else {
+        cout << "  right child is: " << "nullptr" << "\n";
+    }
+    if (n->parent) {
+        cout << "  parent is: " << n->parent->info << "\n";
+    } else {
+        cout << "  parent is: " << "nullptr" << "\n";
+    }
+
+    cout << endl;
+
+    testScanHelper(n->right);
+}

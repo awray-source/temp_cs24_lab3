@@ -29,6 +29,7 @@ class IntBST {
     int getSuccessor(int value) const;         // returns the successor value of the given value or 0 if there is none
     bool remove(int value);                    // deletes the Node containing the given value from the tree
 
+    void testScan();
  private:
 
     struct Node {
@@ -55,6 +56,7 @@ class IntBST {
     Node* getSuccessorNode(int value) const;   // returns the Node containing the successor of the given value
     Node* getPredecessorNode(int value) const; // returns the Node containing the predecessor of the given value 
 
+    void testScanHelper(Node *n);
 };
 
 #endif
