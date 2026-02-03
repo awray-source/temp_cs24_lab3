@@ -183,7 +183,7 @@ IntBST::Node* IntBST::getPredecessorNode(int value) const{
             
         }
         else {
-            if (n->info == value) {found == true;}
+            if (n->info == value) {found = true;}
             n = n->left;
         }
     }
@@ -212,7 +212,7 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const{
             n = n->left;
         }
         else {
-            if (n->info == value) {found == true;}
+            if (n->info == value) {found = true;}
             n = n->right;
         }
     }
