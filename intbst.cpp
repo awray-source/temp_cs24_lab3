@@ -174,16 +174,20 @@ bool IntBST::contains(int value) const {
 IntBST::Node* IntBST::getPredecessorNode(int value) const{
     Node* n = root;
     Node* maxLess = nullptr;
+    bool found = false;
     while (n != nullptr) {
         if (n->info < value) {
             //if (maxLess == nullptr || maxLess->info < n->info) {}
             maxLess = n;
             n = n->right;
+            
         }
         else {
+            if (n->info == value) {found == true;}
             n = n->left;
         }
     }
+    if (!found) {return nullptr;}
     return maxLess;
 }
 
@@ -200,6 +204,7 @@ int IntBST::getPredecessor(int value) const{
 IntBST::Node* IntBST::getSuccessorNode(int value) const{
     Node* n = root;
     Node* minGreater = nullptr;
+    bool found = false;
     while (n != nullptr) {
         if (n->info > value) {
             //if (minGreater == nullptr || minGreater->info > n->info) {}
@@ -207,9 +212,11 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const{
             n = n->left;
         }
         else {
+            if (n->info == value) {found == true;}
             n = n->right;
         }
     }
+    if (!found) {return nullptr;}
     return minGreater;
 }
 
